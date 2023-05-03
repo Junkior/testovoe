@@ -8,7 +8,6 @@ fake = Faker()
 def get_chrome_set():
     options = Options()
     path = 'C:/chromedriver.exe'
-    options.add_experimental_option('detach', True)
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--start-maximized")
     options.add_argument("--headless")
@@ -28,3 +27,9 @@ def data_for_register_user():
     email = fake.email()
     password = fake.password()
     return {"email": email, "password": password}
+
+@pytest.fixture
+def api_test_url():
+    url = 'https://reqres.in/api'
+    return url
+
