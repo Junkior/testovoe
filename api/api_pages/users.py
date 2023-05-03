@@ -23,21 +23,21 @@ class UserPage:
         validate(instance=response.json(), schema=valid_schema)
         return response
 
-    def fully_update_user(self, valid_schema: dict, user_id, body: dict):
+    def fully_update_user(self, valid_schema: dict, body: dict, user_id=2):
         response = requests.put(f"{self.url}{self.USERS_PATH}/{user_id}", json=body)
         validate(instance=response.json(), schema=valid_schema)
         return response
 
-    def update_user(self, valid_schema: dict, user_id, body:dict):
+    def update_user(self, valid_schema: dict, body:dict, user_id=2):
         response = requests.patch(f"{self.url}{self.USERS_PATH}/{user_id}", json=body)
         validate(instance=response.json(), schema=valid_schema)
         return response
 
-    def delete_user(self, user_id):
+    def delete_user(self, user_id=2):
         response = requests.delete(f"{self.url}{self.USERS_PATH}/{user_id}")
         return response
 
-    def get_delayed_response(self, valid_schema: dict, delay):
+    def get_delayed_response(self, valid_schema: dict, delay=3):
         response = requests.get(f"{self.url}{self.USERS_PATH}?delay={delay}")
         validate(instance=response.json(), schema=valid_schema)
         return response
