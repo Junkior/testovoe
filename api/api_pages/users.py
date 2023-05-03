@@ -13,7 +13,7 @@ class UserPage:
         validate(instance=response.json(), schema=valid_schema)
         return response
 
-    def get_user_single(self, valid_schema: dict, user_id):
+    def get_user_single(self, valid_schema: dict, user_id=2):
         response = requests.get(f"{self.url}{self.USERS_PATH}/{user_id}")
         validate(instance=response.json(), schema=valid_schema)
         return response
