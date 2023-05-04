@@ -1,13 +1,10 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from faker import Faker
-
-fake = Faker()
 
 
-@pytest.fixture
-def get_chrome_set():
+@pytest.fixture(scope="function")
+def get_chrome_set(request):
     options = Options()
     path = 'C:/chromedriver.exe'
     options.add_argument("--window-size=1920,1080")
@@ -15,7 +12,9 @@ def get_chrome_set():
     options.add_argument("--headless")
     driver = webdriver.Chrome(options=options, executable_path=path)
     driver.implicitly_wait(10)
-    return driver
+    request.cls.driver = driver
+    yield
+    driver.quit()
 
 
 @pytest.fixture
@@ -24,26 +23,14 @@ def data_for_create_user():
     return body
 
 
-# @pytest.fixture
-# def data_for_register_user(request):
-#     request.cls.body_positive = {"email": "eve.holt@reqres.in", "password": "pistol"}
-#     request.cls.body_negative = {"email": "sydney@fife"}
-#
-#
-# @pytest.fixture(params=[{"email": "eve.holt@reqres.in", "password": "pistol"}])
-# def data_for_register_positive(request):
-#     return json.dumps(request.param)
-#
-#
-# @pytest.fixture(params=[{"email": "sydney@fife"}])
-# def data_for_register_negative(request):
-#     return json.dumps(request.param)
-
-
-
 @pytest.fixture
 def api_test_url(request):
     request.cls.url = 'https://reqres.in/api'
+
+
+@pytest.fixture
+def web_test_url(request):
+    request.cls.web_url = 'https://reqres.in'
 
 
 @pytest.fixture

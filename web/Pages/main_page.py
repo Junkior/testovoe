@@ -1,3 +1,5 @@
+import time
+
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from web.locators import Locators
@@ -22,10 +24,13 @@ class MainPage:
             self.driver.execute_script("window.scrollBy(0, 1000);")
 
         def get_response_code(self):
-           response_code = self.driver.find_element(*Locators.response_code_locator).text
-           return int(response_code)
+            time.sleep(1)
+            response_code = self.driver.find_element(*Locators.response_code_locator)
+            response_code_text = response_code.text
+            return int(response_code_text)
 
         def get_response_body(self):
+            time.sleep(1)
             response_body = self.driver.find_element(*Locators.response_body_locator).text
             return response_body
 

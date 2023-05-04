@@ -7,7 +7,7 @@ class Locators(object):
     single_user_not_found_locator = (By.CSS_SELECTOR, "[href='/api/users/23'][data-key='try-link']")
     unknown_list_locator = (By.CSS_SELECTOR, "[href='/api/unknown'][data-key='try-link']")
     unknown_single_locator = (By.CSS_SELECTOR, "[href='/api/unknown/2'][data-key='try-link']")
-    unknown_not_found_locator = (By.CSS_SELECTOR, "[href='/api/unknown/2'][data-key='try-link']")
+    unknown_not_found_locator = (By.CSS_SELECTOR, "[href='/api/unknown/23'][data-key='try-link']")
     user_create_locator = (By.CSS_SELECTOR, "[data-id='post']")
     user_put_update_locator = (By.CSS_SELECTOR, "[data-id='put']")
     user_patch_update_locator = (By.CSS_SELECTOR, "[data-id='patch'] > [data-key='try-link']")
